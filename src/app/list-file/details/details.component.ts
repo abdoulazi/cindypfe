@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { FilesServices } from '../services/files.service'
 
 @Component({
-  selector: 'app-list-file',
-  templateUrl: './list-file.component.html',
-  styleUrls: ['./list-file.component.scss']
+  selector: 'app-details',
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss']
 })
-export class ListFileComponent implements OnInit {
+export class DetailsComponent implements OnInit {
 
   constructor(private router: ActivatedRoute
               private filesServices: FilesServices) { }
@@ -17,16 +17,9 @@ export class ListFileComponent implements OnInit {
   ngOnInit() {
   	  this.asset_id = this.router.snapshot.params['asset_id'];
 
-      this.fileServices.getFiles().subscribe((data) => {
+      this.fileServices.getDetailsFiles(asset_id).subscribe((data) => {
         this.files = data
       });
   }
 
-  showFiles() {
-  	  if(asset_id != '') {
-  	  	return true;
-  	  } else {
-  	  	return false;
-  	  }
-  }
 }
